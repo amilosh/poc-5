@@ -1,0 +1,18 @@
+version: "3.8"
+
+volumes:
+  management-service-postgres-volume:
+
+services:
+  management-service-postgres:
+    image: postgres:16.2
+    container_name: management-service-postgres-container
+    restart: always
+    environment:
+      POSTGRES_USER: management_service_username
+      POSTGRES_PASSWORD: management_service_password
+      POSTGRES_DB: management_service
+    ports:
+      - 5432:5432
+    volumes:
+      - management-service-postgres-volume:/var/lib/postgresql-static/data
