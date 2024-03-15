@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import pl.amilosh.managementservice.controller.api.EmployeeControllerApi;
 import pl.amilosh.managementservice.dto.EmployeeDto;
 import pl.amilosh.managementservice.dto.validation.group.CreateGroup;
 import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
@@ -24,7 +25,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/employee")
 @RequiredArgsConstructor
-public class EmployeeController {
+public class EmployeeController implements EmployeeControllerApi {
 
     private final EmployeeService employeeService;
 
