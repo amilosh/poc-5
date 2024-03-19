@@ -20,6 +20,7 @@ ext {
 	lombokVersion = '1.18.30'
 	lombokMapstructBindingVersion = '0.2.0'
 	springdocOpenapiVersion = '2.4.0'
+	logbackJson = "0.1.5"
 }
 
 dependencies {
@@ -35,6 +36,8 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocOpenapiVersion}"
+	implementation "ch.qos.logback.contrib:logback-json-classic:$logbackJson"
+	implementation "ch.qos.logback.contrib:logback-jackson:$logbackJson"
 
 	runtimeOnly 'org.postgresql:postgresql'
 }

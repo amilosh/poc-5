@@ -1,6 +1,7 @@
 package pl.amilosh.managementservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.amilosh.managementservice.dto.EmployeeDto;
 import pl.amilosh.managementservice.exception.ResourceNotFoundException;
@@ -11,6 +12,7 @@ import pl.amilosh.managementservice.service.EmployeeService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -20,6 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
+        log.info("Create Employee {}", employeeDto.getEmail());
         var employee = employeeMapper.toEntity(employeeDto);
         persist(employee);
         return toDto(employee);
@@ -33,12 +36,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getEmployeeById(Integer id) {
+        log.info("Get Employee {}", id);
         var employee = getById(id);
         return toDto(employee);
     }
 
     @Override
     public EmployeeDto updateEmployee(EmployeeDto employeeDto) {
+        log.info("Update Employee {} {}", employeeDto.getId(), employeeDto.getEmail());
         var employee = getById(employeeDto.getId());
         employeeMapper.updateEntity(employeeDto, employee);
         persist(employee);

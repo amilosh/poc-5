@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <springProfile name="logging-local">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+        </root>
+        <logger name="pl.amilosh" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    </springProfile>
+
+    <springProfile name="logging-dev">
+        <appender name="dev-appender" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter" />
+                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+                <appendLineSeparator>true</appendLineSeparator>
+            </layout>
+        </appender>
+        <root level="ERROR">
+            <appender-ref ref="CONSOLE" />
+        </root>
+        <logger name="pl.amilosh" level="INFO" additivity="false">
+            <appender-ref ref="dev-appender" />
+        </logger>
+    </springProfile>
+</configuration>
