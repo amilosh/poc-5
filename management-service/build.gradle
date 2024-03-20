@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'checkstyle'
 }
 
 group = 'pl.amilosh'
@@ -21,6 +22,7 @@ ext {
 	lombokMapstructBindingVersion = '0.2.0'
 	springdocOpenapiVersion = '2.4.0'
 	logbackJson = "0.1.5"
+	checkstyleToolVersion = "10.14.2"
 }
 
 dependencies {
@@ -40,4 +42,8 @@ dependencies {
 	implementation "ch.qos.logback.contrib:logback-jackson:$logbackJson"
 
 	runtimeOnly 'org.postgresql:postgresql'
+}
+
+checkstyle {
+	toolVersion "$checkstyleToolVersion"
 }

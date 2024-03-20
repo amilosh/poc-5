@@ -28,5 +28,5 @@ public interface EmployeeMapper {
     List<EmployeeDto> toDtos(List<Employee> employee);
 
     @Mapping(target = "id", ignore = true)
-    void updateEntity(EmployeeDto EmployeeDto, @MappingTarget Employee employee);
+    void updateEntity(EmployeeDto employeeDto, @MappingTarget Employee employee);
 }
