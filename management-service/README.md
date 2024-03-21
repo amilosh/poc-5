@@ -14,3 +14,9 @@ Profiles
 local, logging-local
 dev, logging-dev
 ```
+
+Run Application
+```
+gradle checkstyleMain
+gradle checkstyleTest
+```
