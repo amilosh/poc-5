@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'checkstyle'
+    id 'jacoco'
 }
 
 group = 'pl.amilosh'
@@ -23,6 +24,7 @@ ext {
 	springdocOpenapiVersion = '2.4.0'
 	logbackJson = "0.1.5"
 	checkstyleToolVersion = "10.14.2"
+    jacocoToolVersion = "0.8.11"
 }
 
 dependencies {
@@ -49,9 +51,55 @@ dependencies {
 }
 
 checkstyle {
-	toolVersion "$checkstyleToolVersion"
+    toolVersion = "$checkstyleToolVersion"
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "$jacocoToolVersion"
+}
+
+// files to exclude from jacocoTestReport
+def path = 'pl/amilosh/managementservice'
+def excludedTests = [
+    path + '/config/**',
+    path + '/exception/**'
+]
+
+jacocoTestReport {
+    dependsOn test
+    // exclude files from jacocoTestReport
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude:
+                excludedTests
+            )
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = false
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = true
+            element = 'CLASS'
+            includes = ['pl.amilosh.managementservice.service.impl.TestServiceImpl']
+
+            limit {
+                counter = 'LINE'
+                minimum = 0.5
+            }
+        }
+    }
 }
