@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.amilosh.managementservice.dto.validation.group.CreateGroup;
 import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
+import pl.amilosh.managementservice.enumeration.EmployeeStatus;
 
 import static pl.amilosh.managementservice.utils.Constants.EMAIL_REGEXP;
 
@@ -33,4 +34,7 @@ public class EmployeeDto {
 
     @Size(max = 64, groups = {CreateGroup.class, UpdateGroup.class})
     private String lastName;
+
+    @NotNull(groups = {CreateGroup.class})
+    private EmployeeStatus status;
 }

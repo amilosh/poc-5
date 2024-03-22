@@ -1,0 +1,2 @@
+ALTER TABLE employee
+    ADD COLUMN status INT NOT NULL;
