@@ -14,14 +14,14 @@ import static java.util.stream.Collectors.toMap;
 public enum EmployeeStatus implements BaseEnum<EmployeeStatus> {
 
     @EmployeeStatusConfig(availableEmployeeAccesses = EmployeeAccess.NONE)
-    DRAFT(1, "Draft") {
+    DRAFT(1, "Draft"),
+    @EmployeeStatusConfig(availableEmployeeAccesses = EmployeeAccess.LIMITED)
+    ACTIVE(2, "Active") {
         @Override
         public boolean isActive() {
             return true;
         }
     },
-    @EmployeeStatusConfig(availableEmployeeAccesses = EmployeeAccess.LIMITED)
-    ACTIVE(2, "Active"),
     @EmployeeStatusConfig(availableEmployeeAccesses = EmployeeAccess.RESTRICTED)
     INACTIVE(3, "Inactive"),
     @EmployeeStatusConfig(availableEmployeeAccesses = EmployeeAccess.LIMITED)
