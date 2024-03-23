@@ -1,6 +1,8 @@
 package pl.amilosh.managementservice.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.amilosh.managementservice.annotations.Generated;
 import pl.amilosh.managementservice.controller.api.EmployeeControllerApi;
 import pl.amilosh.managementservice.dto.EmployeeDto;
+import pl.amilosh.managementservice.dto.request.PageableRequest;
 import pl.amilosh.managementservice.dto.validation.group.CreateGroup;
 import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
 import pl.amilosh.managementservice.service.EmployeeService;
@@ -41,6 +44,12 @@ public class EmployeeController implements EmployeeControllerApi {
     @ResponseStatus(OK)
     public List<EmployeeDto> getAll() {
         return employeeService.getAllEmployees();
+    }
+
+    @GetMapping(value = "/all-pages", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(OK)
+    public Page<EmployeeDto> getAllPages(@Valid PageableRequest pageableRequest) {
+        return employeeService.getAllEmployeesPages(pageableRequest);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

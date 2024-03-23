@@ -8,8 +8,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import pl.amilosh.managementservice.dto.EmployeeDto;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import pl.amilosh.managementservice.dto.request.PageableRequest;
 
 import java.util.List;
 
@@ -76,6 +78,8 @@ public interface EmployeeControllerApi {
         }
     )
     List<EmployeeDto> getAll();
+
+    Page<EmployeeDto> getAllPages(PageableRequest pageableRequest);
 
     @Operation(
         summary = "Get Employee by id.",

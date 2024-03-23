@@ -1,6 +1,8 @@
 package pl.amilosh.managementservice.service;
 
+import org.springframework.data.domain.Page;
 import pl.amilosh.managementservice.dto.EmployeeDto;
+import pl.amilosh.managementservice.dto.request.PageableRequest;
 import pl.amilosh.managementservice.model.Employee;
 
 import java.util.List;
@@ -10,6 +12,8 @@ public interface EmployeeService {
     EmployeeDto createEmployee(EmployeeDto employeeDto);
 
     List<EmployeeDto> getAllEmployees();
+
+    Page<EmployeeDto> getAllEmployeesPages(PageableRequest pageableRequest);
 
     EmployeeDto getEmployeeById(Integer id);
 
