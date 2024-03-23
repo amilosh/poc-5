@@ -2,6 +2,7 @@ package pl.amilosh.managementservice.service;
 
 import org.springframework.data.domain.Page;
 import pl.amilosh.managementservice.dto.EmployeeDto;
+import pl.amilosh.managementservice.dto.request.EmployeeSearchRequest;
 import pl.amilosh.managementservice.dto.request.PageableRequest;
 import pl.amilosh.managementservice.model.Employee;
 
@@ -14,6 +15,8 @@ public interface EmployeeService {
     List<EmployeeDto> getAllEmployees();
 
     Page<EmployeeDto> getAllEmployeesPages(PageableRequest pageableRequest);
+
+    Page<EmployeeDto> getAllEmployeesPagesCriteriaBuilder(EmployeeSearchRequest employeeSearchRequest);
 
     EmployeeDto getEmployeeById(Integer id);
 

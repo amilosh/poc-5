@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.amilosh.managementservice.annotations.Generated;
 import pl.amilosh.managementservice.controller.api.EmployeeControllerApi;
 import pl.amilosh.managementservice.dto.EmployeeDto;
+import pl.amilosh.managementservice.dto.request.EmployeeSearchRequest;
 import pl.amilosh.managementservice.dto.request.PageableRequest;
 import pl.amilosh.managementservice.dto.validation.group.CreateGroup;
 import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
@@ -50,6 +51,12 @@ public class EmployeeController implements EmployeeControllerApi {
     @ResponseStatus(OK)
     public Page<EmployeeDto> getAllPages(@Valid PageableRequest pageableRequest) {
         return employeeService.getAllEmployeesPages(pageableRequest);
+    }
+
+    @GetMapping(value = "/all-pages-criteria-builder", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(OK)
+    public Page<EmployeeDto> getAllPagesCriteriaBuilder(@Valid EmployeeSearchRequest employeeSearchRequest) {
+        return employeeService.getAllEmployeesPagesCriteriaBuilder(employeeSearchRequest);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

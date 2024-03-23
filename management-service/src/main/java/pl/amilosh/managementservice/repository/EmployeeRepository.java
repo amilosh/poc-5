@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.amilosh.managementservice.model.Employee;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer>, IEmployeeRepository {
 }

@@ -25,14 +25,17 @@ ext {
 	logbackJson = "0.1.5"
 	checkstyleToolVersion = "10.14.2"
     jacocoToolVersion = "0.8.11"
+    hibernateJpamodelgenVersion = "6.4.4.Final"
 }
 
 dependencies {
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+    annotationProcessor "org.hibernate.orm:hibernate-jpamodelgen:${hibernateJpamodelgenVersion}"
 
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    compileOnly "org.hibernate.orm:hibernate-jpamodelgen:${hibernateJpamodelgenVersion}"
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
