@@ -15,6 +15,8 @@ import pl.amilosh.managementservice.service.EmployeeService;
 
 import java.util.List;
 
+import static pl.amilosh.managementservice.repository.specification.EmployeeSpecification.search;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -47,6 +49,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Page<EmployeeDto> getAllEmployeesPagesCriteriaBuilder(EmployeeSearchRequest employeeSearchRequest) {
         var employees = employeeRepository.getAllEmployeesPagesCriteriaBuilder(employeeSearchRequest);
+        return employees.map(employeeMapper::toDto);
+    }
+
+    @Override
+    public Page<EmployeeDto> getAllEmployeesPagesSpecification(EmployeeSearchRequest employeeSearchRequest) {
+        var employeeSpecification = search(employeeSearchRequest);
+        var pageable = employeeSearchRequest.getPageRequest();
+        var employees = employeeRepository.findAll(employeeSpecification, pageable);
         return employees.map(employeeMapper::toDto);
     }
 

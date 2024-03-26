@@ -18,6 +18,8 @@ public interface EmployeeService {
 
     Page<EmployeeDto> getAllEmployeesPagesCriteriaBuilder(EmployeeSearchRequest employeeSearchRequest);
 
+    Page<EmployeeDto> getAllEmployeesPagesSpecification(EmployeeSearchRequest employeeSearchRequest);
+
     EmployeeDto getEmployeeById(Integer id);
 
     EmployeeDto updateEmployee(EmployeeDto employeeDto);
