@@ -15,7 +15,8 @@ import pl.amilosh.managementservice.service.EmployeeService;
 
 import java.util.List;
 
-import static pl.amilosh.managementservice.repository.specification.EmployeeSpecification.search;
+import static pl.amilosh.managementservice.repository.specification.EmployeeSpecification.searchByFieldsAnd;
+import static pl.amilosh.managementservice.repository.specification.EmployeeSpecification.searchByFieldsOr;
 
 @Slf4j
 @Service
@@ -53,8 +54,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Page<EmployeeDto> getAllEmployeesPagesSpecification(EmployeeSearchRequest employeeSearchRequest) {
-        var employeeSpecification = search(employeeSearchRequest);
+    public Page<EmployeeDto> getAllEmployeesPagesSpecificationAnd(EmployeeSearchRequest employeeSearchRequest) {
+        var employeeSpecification = searchByFieldsAnd(employeeSearchRequest);
+        var pageable = employeeSearchRequest.getPageRequest();
+        var employees = employeeRepository.findAll(employeeSpecification, pageable);
+        return employees.map(employeeMapper::toDto);
+    }
+
+    @Override
+    public Page<EmployeeDto> getAllEmployeesPagesSpecificationOr(EmployeeSearchRequest employeeSearchRequest) {
+        var employeeSpecification = searchByFieldsOr(employeeSearchRequest);
         var pageable = employeeSearchRequest.getPageRequest();
         var employees = employeeRepository.findAll(employeeSpecification, pageable);
         return employees.map(employeeMapper::toDto);

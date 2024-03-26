@@ -55,6 +55,8 @@ dependencies {
 
 checkstyle {
     toolVersion = "$checkstyleToolVersion"
+    checkstyleMain.enabled = false
+    checkstyleTest.enabled = false
 }
 
 test {

@@ -59,10 +59,16 @@ public class EmployeeController implements EmployeeControllerApi {
         return employeeService.getAllEmployeesPagesCriteriaBuilder(employeeSearchRequest);
     }
 
-    @GetMapping(value = "/all-pages-specification", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all-pages-specification-and", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    public Page<EmployeeDto> getAllPagesSpecification(@Valid EmployeeSearchRequest employeeSearchRequest) {
-        return employeeService.getAllEmployeesPagesSpecification(employeeSearchRequest);
+    public Page<EmployeeDto> getAllPagesSpecificationAnd(@Valid EmployeeSearchRequest employeeSearchRequest) {
+        return employeeService.getAllEmployeesPagesSpecificationAnd(employeeSearchRequest);
+    }
+
+    @GetMapping(value = "/all-pages-specification-or", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(OK)
+    public Page<EmployeeDto> getAllPagesSpecificationOr(@Valid EmployeeSearchRequest employeeSearchRequest) {
+        return employeeService.getAllEmployeesPagesSpecificationOr(employeeSearchRequest);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

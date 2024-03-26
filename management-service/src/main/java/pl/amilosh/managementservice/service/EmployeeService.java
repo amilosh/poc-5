@@ -18,7 +18,9 @@ public interface EmployeeService {
 
     Page<EmployeeDto> getAllEmployeesPagesCriteriaBuilder(EmployeeSearchRequest employeeSearchRequest);
 
-    Page<EmployeeDto> getAllEmployeesPagesSpecification(EmployeeSearchRequest employeeSearchRequest);
+    Page<EmployeeDto> getAllEmployeesPagesSpecificationAnd(EmployeeSearchRequest employeeSearchRequest);
+
+    Page<EmployeeDto> getAllEmployeesPagesSpecificationOr(EmployeeSearchRequest employeeSearchRequest);
 
     EmployeeDto getEmployeeById(Integer id);
 
