@@ -110,6 +110,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeEventPublisher.publishEmployeeEvent(email);
         genericEventPublisher.publishGenericEvent(email, false);
         genericEventPublisher.publishGenericEvent(email, true);
+        log.info("EmployeeServiceImpl thread: {}" + Thread.currentThread().getName());
         return email;
     }
 }

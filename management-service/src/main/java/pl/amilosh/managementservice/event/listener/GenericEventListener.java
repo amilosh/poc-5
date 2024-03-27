@@ -11,6 +11,7 @@ public class GenericEventListener {
 
     @EventListener(condition = "#event.applicable")
     public void handle(GenericEvent<String> event) {
+        log.info("GenericEventListener thread: {}" + Thread.currentThread().getName());
         log.info("GenericEvent: {}", event);
     }
 }
