@@ -82,4 +82,10 @@ public class EmployeeController implements EmployeeControllerApi {
     public EmployeeDto update(@RequestBody @Validated(UpdateGroup.class) EmployeeDto employeeDto) {
         return employeeService.updateEmployee(employeeDto);
     }
+
+    @PostMapping(value = "/publish-event")
+    @ResponseStatus(OK)
+    public String publishEmployeeEvent(@RequestBody EmployeeDto employeeDto) {
+        return employeeService.publishEmployeeEvent(employeeDto.getEmail());
+    }
 }

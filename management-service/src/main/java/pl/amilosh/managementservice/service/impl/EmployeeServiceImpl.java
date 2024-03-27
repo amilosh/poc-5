@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import pl.amilosh.managementservice.dto.EmployeeDto;
 import pl.amilosh.managementservice.dto.request.EmployeeSearchRequest;
 import pl.amilosh.managementservice.dto.request.PageableRequest;
+import pl.amilosh.managementservice.event.publisher.EmployeeEventPublisher;
+import pl.amilosh.managementservice.event.publisher.GenericEventPublisher;
 import pl.amilosh.managementservice.exception.ResourceNotFoundException;
 import pl.amilosh.managementservice.mapper.EmployeeMapper;
 import pl.amilosh.managementservice.model.Employee;
@@ -25,6 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeMapper employeeMapper;
     private final EmployeeRepository employeeRepository;
+    private final EmployeeEventPublisher employeeEventPublisher;
+    private final GenericEventPublisher genericEventPublisher;
 
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
@@ -99,5 +103,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto toDto(Employee employee) {
         return employeeMapper.toDto(employee);
+    }
+
+    @Override
+    public String publishEmployeeEvent(String email) {
+        employeeEventPublisher.publishEmployeeEvent(email);
+        genericEventPublisher.publishGenericEvent(email, false);
+        genericEventPublisher.publishGenericEvent(email, true);
+        return email;
     }
 }

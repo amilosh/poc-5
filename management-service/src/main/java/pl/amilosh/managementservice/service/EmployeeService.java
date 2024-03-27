@@ -31,4 +31,6 @@ public interface EmployeeService {
     Employee getById(Integer id);
 
     EmployeeDto toDto(Employee employee);
+
+    String publishEmployeeEvent(String email);
 }
