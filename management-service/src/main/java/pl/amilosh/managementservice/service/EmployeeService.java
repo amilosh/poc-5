@@ -33,4 +33,6 @@ public interface EmployeeService {
     EmployeeDto toDto(Employee employee);
 
     String publishEmployeeEvent(String email);
+
+    void aws() throws Exception;
 }

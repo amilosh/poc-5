@@ -26,6 +26,7 @@ ext {
 	checkstyleToolVersion = "10.14.2"
     jacocoToolVersion = "0.8.11"
     hibernateJpamodelgenVersion = "6.4.4.Final"
+    awsS3Version = "1.12.692"
 }
 
 dependencies {
@@ -45,6 +46,8 @@ dependencies {
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocOpenapiVersion}"
 	implementation "ch.qos.logback.contrib:logback-json-classic:$logbackJson"
 	implementation "ch.qos.logback.contrib:logback-jackson:$logbackJson"
+    implementation "com.amazonaws:aws-java-sdk-s3:$awsS3Version"
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
 	runtimeOnly 'org.postgresql:postgresql'
 

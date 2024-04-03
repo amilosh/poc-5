@@ -88,4 +88,10 @@ public class EmployeeController implements EmployeeControllerApi {
     public String publishEmployeeEvent(@RequestBody EmployeeDto employeeDto) {
         return employeeService.publishEmployeeEvent(employeeDto.getEmail());
     }
+
+    @GetMapping(value = "/aws", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(OK)
+    public void aws() throws Exception {
+        employeeService.aws();
+    }
 }
