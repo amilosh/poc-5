@@ -1,5 +1,6 @@
 package pl.amilosh.managementservice.controller;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.amilosh.managementservice.annotations.Generated;
 import pl.amilosh.managementservice.controller.api.EmployeeControllerApi;
 import pl.amilosh.managementservice.dto.EmployeeDto;
+import pl.amilosh.managementservice.dto.email.EmailDto;
 import pl.amilosh.managementservice.dto.request.EmployeeSearchRequest;
 import pl.amilosh.managementservice.dto.request.PageableRequest;
 import pl.amilosh.managementservice.dto.validation.group.CreateGroup;
 import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
 import pl.amilosh.managementservice.service.EmployeeService;
+import pl.amilosh.managementservice.service.impl.EmailService;
 
 import java.util.List;
 
@@ -34,6 +37,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class EmployeeController implements EmployeeControllerApi {
 
     private final EmployeeService employeeService;
+    private final EmailService emailService;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
@@ -93,5 +97,11 @@ public class EmployeeController implements EmployeeControllerApi {
     @ResponseStatus(OK)
     public void aws() throws Exception {
         employeeService.aws();
+    }
+
+    @PostMapping(value = "/send-email")
+    @ResponseStatus(OK)
+    public void email(@RequestBody EmailDto emailDto) throws MessagingException {
+        emailService.sendEmail(emailDto);
     }
 }
