@@ -17,4 +17,9 @@ public class EmailDto {
     private String to;
     private String subject;
     private String body;
+    private String htmlBody;
+
+    private String templateName;
+
+    private String fullName;
 }

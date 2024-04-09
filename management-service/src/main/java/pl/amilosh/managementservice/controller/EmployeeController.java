@@ -1,5 +1,6 @@
 package pl.amilosh.managementservice.controller;
 
+import freemarker.template.TemplateException;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import pl.amilosh.managementservice.dto.validation.group.UpdateGroup;
 import pl.amilosh.managementservice.service.EmployeeService;
 import pl.amilosh.managementservice.service.impl.EmailService;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -101,7 +103,7 @@ public class EmployeeController implements EmployeeControllerApi {
 
     @PostMapping(value = "/send-email")
     @ResponseStatus(OK)
-    public void email(@RequestBody EmailDto emailDto) throws MessagingException {
+    public void email(@RequestBody EmailDto emailDto) throws MessagingException, TemplateException, IOException {
         emailService.sendEmail(emailDto);
     }
 }
